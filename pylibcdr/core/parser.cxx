@@ -1,11 +1,11 @@
 #include <iostream>
 #include <stdio.h>
 #include <string.h>
-#include <libcdr/libcdr.h>
-#include <librevenge/librevenge.h>
-#include <librevenge-generators/librevenge-generators.h>
-#include <librevenge-stream/librevenge-stream.h>
-#include <libcdr/libcdr.h>
+#include <libcdr-0.1/libcdr/libcdr.h>
+#include <librevenge-0.0/librevenge/librevenge.h>
+#include <librevenge-0.0/librevenge-generators/librevenge-generators.h>
+#include <librevenge-0.0/librevenge-stream/librevenge-stream.h>
+#include <libcdr-0.1/libcdr/libcdr.h>
 
 
 std::string svg(char* file) {
