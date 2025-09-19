@@ -7,7 +7,7 @@
 
 # Include dir
 find_path(LIBREVENGE_INCLUDE_DIR
-  NAMES librevenge-0.0/librevenge/librevenge.h
+  NAMES librevenge/librevenge.h
   PATHS $HOME/../usr/include/*
 )
 
