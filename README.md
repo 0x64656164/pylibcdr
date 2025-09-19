@@ -1,4 +1,4 @@
-Python bindings for libcdr
+Python bindings for libcdr in Termux
 ==========
 
 [![DOI](https://zenodo.org/badge/468935999.svg)](https://doi.org/10.5281/zenodo.7692820)
@@ -12,18 +12,15 @@ Simple Python bindings for the [libcdr](https://wiki.documentfoundation.org/DLP/
 
 First, the `libcdr` newer than `v0.1.8` must be compiled.
 
-E.g. on Debian:
+E.g. on Termux:
 
 ```
-apt-get install automake cmake libtool libboost-all-dev libicu-dev liblcms2-dev librevenge-dev libcppunit-dev zlib1g-dev
-git clone https://git.libreoffice.org/libcdr
-cd libcdr
-./autogen.sh
-./configure
-make && sudo make install
+apt install automake cmake libtool boost boost-headers librevenge cppunit libcdr
+cp -r $HOME/../usr/include/librevenge-0.0/* $HOME/../usr/include
+cp -r $HOME/../usr/include/libcdr-0.1/* $HOME/../usr/include
 ```
 
-Then: `pip install git+https://github.com/mpds-io/pylibcdr`
+Then: `pip install git+https://github.com/0x64656164/pylibcdr`
 
 
 ## Usage
