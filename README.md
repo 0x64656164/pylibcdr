@@ -12,8 +12,6 @@ Simple Python bindings for the [libcdr](https://wiki.documentfoundation.org/DLP/
 
 First, the `libcdr` newer than `v0.1.8` must be compiled.
 
-E.g. on Termux:
-
 ```
 apt install automake cmake libtool boost boost-headers librevenge cppunit libcdr
 cp -r $HOME/../usr/include/librevenge-0.0/* $HOME/../usr/include
