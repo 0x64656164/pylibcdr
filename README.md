@@ -30,6 +30,18 @@ parser = CDRParser(sys.argv[1])
 print(parser.dict)
 ```
 
+Convert to SVG:
+
+```
+from pylibcdr import CDRParser
+
+filename = "test-1"
+parser = CDRParser(filename + ".cdr")
+# The parser.xml attribute contains the SVG-like XML, but might need adjustments
+f = open(filename + ".svg", "w")
+f.write(parser.xml)
+f.close()
+```
 
 ## License
 
