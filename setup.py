@@ -39,16 +39,25 @@ class build_ext(build_extension, object):
         extdir.mkdir(parents=True, exist_ok=True)
         # example of cmake args
         config = 'Debug' if self.debug else 'Release'
+        
+        # Получаем информацию о Python для правильной линковки
+        import sysconfig
+        python_lib_dir = sysconfig.get_config_var('LIBDIR')
+        python_include_dir = sysconfig.get_config_var('INCLUDEPY')
+        
         cmake_args = [
             '-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=' + str(extdir.parent.absolute()),
             '-DCMAKE_BUILD_TYPE=' + config,
-            '-DPYTHON_VERSION=' + python_version()
+            '-DPYTHON_VERSION=' + python_version(),
+            '-DPYTHON_LIBRARY=' + python_lib_dir,
+            '-DPYTHON_INCLUDE_DIR=' + python_include_dir,
+            '-DCMAKE_POSITION_INDEPENDENT_CODE=ON',  # Важно для Termux
         ]
 
         # example of build args
         build_args = [
             '--config', config,
-            '--', '-j4'
+            '--', '-j2'  # Уменьшаем для Termux
         ]
         os.chdir(str(build_temp))
         self.spawn(['cmake', os.path.join(root, 'pylibcdr')] + cmake_args)
@@ -63,13 +72,15 @@ pyx_ext = Extension("libcdr_interface",
             sources=["pylibcdr/libcdr_interface.pyx"],
             include_dirs=["pylibcdr/core"],
             language="c++",
+            extra_compile_args=["-fPIC"],  # Добавляем для Termux
+            extra_link_args=["-fPIC"],     # Добавляем для Termux
             )
 directives = {'language_level' : "2" if six.PY2 else "3"}
 cythonize(pyx_ext, compiler_directives={'language_level' : "3"})
 
 setup(
     name="pylibcdr",
-    version="0.1.0",
+    version="0.1.1",  # Обновляем версию
     description="A wrapper around libcdr library.",
     author="Andrey Sobolev",
     author_email="andrey.n.sobolev@gmail.com",
