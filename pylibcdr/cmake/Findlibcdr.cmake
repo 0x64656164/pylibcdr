@@ -8,7 +8,7 @@
 # Include dir
 find_path(LIBCDR_INCLUDE_DIR
   NAMES libcdr-0.1/libcdr/libcdr.h
-  PATHS $HOME/../usr/include/* /usr/local/include/*
+  PATHS $HOME/../usr/include/*
 )
 
 # Finally the library itself
